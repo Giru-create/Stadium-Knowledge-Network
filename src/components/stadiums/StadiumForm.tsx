@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Stadium, StadiumZone } from '../../types';
 import { Button } from '../ui/Button';
-import { LoadingSkeleton } from '../ui/LoadingSkeleton';
+// import { LoadingSkeleton } from '../ui/LoadingSkeleton';
 
 interface FormValues {
   name: string;
@@ -13,14 +13,13 @@ interface FormValues {
   latitude: number;
   longitude: number;
   status: 'Online' | 'Maintenance' | 'Offline';
-  zones: StadiumZone[];
 }
 
 /**
  * Accessible stadium creation form.
  * Uses proper label/input association and ARIA live region for errors.
  */
-export const StadiumForm: React.FC<{ onSubmit: (data: Omit<Stadium, 'id'>) => Promise<void>; loading?: boolean }> = ({ onSubmit, loading = false }) => {
+const StadiumForm: React.FC<{ onSubmit: (data: Omit<Stadium, 'id'>) => Promise<void>; loading?: boolean }> = ({ onSubmit, loading = false }) => {
   const {
     register,
     handleSubmit,
@@ -35,13 +34,12 @@ export const StadiumForm: React.FC<{ onSubmit: (data: Omit<Stadium, 'id'>) => Pr
       latitude: 0,
       longitude: 0,
       status: 'Online',
-      zones: [],
     },
   });
 
   const submitHandler: SubmitHandler<FormValues> = async (data) => {
-    const { zones, ...rest } = data;
-    await onSubmit(rest as Omit<Stadium, 'id'>);
+    const { climateType, ...rest } = data;
+    await onSubmit({ ...(rest as Omit<Stadium, 'id'>), climate: climateType } as Omit<Stadium, 'id'>);
   };
 
   return (
@@ -129,3 +127,4 @@ export const StadiumForm: React.FC<{ onSubmit: (data: Omit<Stadium, 'id'>) => Pr
     </form>
   );
 };
+export default StadiumForm;

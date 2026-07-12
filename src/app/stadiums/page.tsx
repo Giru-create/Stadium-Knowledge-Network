@@ -10,9 +10,9 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Plus } from 'lucide-react';
 
-// Use explicit default export for lazy components
-const StadiumCard = lazy(() => import('@/components/stadiums/StadiumCard').then(mod => ({ default: mod.StadiumCard })));
-const StadiumForm = lazy(() => import('@/components/stadiums/StadiumForm').then(mod => ({ default: mod.StadiumForm })));
+// Lazy‑loaded components (default exports)
+const StadiumCard = lazy(() => import('@/components/stadiums/StadiumCard'));
+const StadiumForm = lazy(() => import('@/components/stadiums/StadiumForm'));
 import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton';
 import { Stadium } from '@/types';
 
@@ -23,7 +23,7 @@ export default function StadiumsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  const handleAddStadium = async (stadiumData: Stadium) => {
+  const handleAddStadium = async (stadiumData: Omit<Stadium, 'id'>) => {
     setSubmitting(true);
     setError('');
     try {

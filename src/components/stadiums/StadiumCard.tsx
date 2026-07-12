@@ -5,7 +5,7 @@ import { Stadium } from '../../types';
  * Accessible, memoized card to display stadium information.
  * Uses role="region" and aria-labelledby for screen readers.
  */
-export const StadiumCard = React.memo(({ stadium }: { stadium: Stadium }) => {
+const StadiumCard = React.memo(({ stadium }: { stadium: Stadium }) => {
   const {
     name,
     city,
@@ -32,5 +32,7 @@ export const StadiumCard = React.memo(({ stadium }: { stadium: Stadium }) => {
     </article>
   );
 });
+
+export default StadiumCard;
 
 StadiumCard.displayName = 'StadiumCard';

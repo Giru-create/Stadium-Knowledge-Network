@@ -24,7 +24,7 @@ export interface Stadium {
   capacity: number;
   latitude: number;
   longitude: number;
-  climateType: string;
+  climate: string;
   zones: StadiumZone[];
   status: 'Online' | 'Maintenance' | 'Offline';
 }

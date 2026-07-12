@@ -97,7 +97,7 @@ class MockDatabase {
           capacity: 87523,
           latitude: 19.3029,
           longitude: -99.1505,
-          climateType: 'Subtropical Highland',
+          climate: 'Subtropical Highland',
           status: 'Online',
           zones: [
             { id: 'z1', name: 'West Concourse', status: 'Normal', occupancy: 42 },
@@ -114,7 +114,7 @@ class MockDatabase {
           capacity: 30000,
           latitude: 43.6328,
           longitude: -79.4186,
-          climateType: 'Humid Continental',
+          climate: 'Humid Continental',
           status: 'Online',
           zones: [
             { id: 'z1', name: 'North Fan Zone', status: 'Normal', occupancy: 25 },
@@ -131,7 +131,7 @@ class MockDatabase {
           capacity: 70240,
           latitude: 33.9534,
           longitude: -118.3390,
-          climateType: 'Mediterranean',
+          climate: 'Mediterranean',
           status: 'Online',
           zones: [
             { id: 'z1', name: 'Plaza Entry North', status: 'Normal', occupancy: 50 },
