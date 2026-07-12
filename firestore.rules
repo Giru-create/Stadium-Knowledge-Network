@@ -1,0 +1,77 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is logged in
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to get user profile data
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    
+    // Helper to check user roles
+    function hasRole(role) {
+      return isAuthenticated() && getUserData().role == role;
+    }
+    
+    function isManagerOrAdmin() {
+      return isAuthenticated() && (getUserData().role == 'Admin' || getUserData().role == 'Stadium Manager');
+    }
+
+    // --- Users Collection ---
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update, delete: if isAuthenticated() && (request.auth.uid == userId || hasRole('Admin'));
+    }
+
+    // --- Stadiums Collection ---
+    match /stadiums/{stadiumId} {
+      allow read: if isAuthenticated();
+      allow write: if isManagerOrAdmin();
+    }
+
+    // --- Matches Collection ---
+    match /matches/{matchId} {
+      allow read: if isAuthenticated();
+      allow write: if isManagerOrAdmin();
+    }
+
+    // --- Playbooks Collection ---
+    match /playbooks/{playbookId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated(); // Operators can compile playbooks
+      allow update, delete: if isManagerOrAdmin();
+    }
+
+    // --- Recommendations Collection ---
+    match /recommendations/{recId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated(); // AI engine writes recommendations
+      allow update: if isAuthenticated(); // Operators can toggle action status
+      allow delete: if hasRole('Admin');
+    }
+
+    // --- Events (Incidents) Collection ---
+    match /events/{eventId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated(); // Operators trigger and resolve events
+      allow delete: if hasRole('Admin');
+    }
+
+    // --- Telemetry Collections (crowd, parking, food, volunteers, weather, transport, energy, waste) ---
+    match /crowd/{docId} { allow read, write: if isAuthenticated(); }
+    match /parking/{docId} { allow read, write: if isAuthenticated(); }
+    match /food/{docId} { allow read, write: if isAuthenticated(); }
+    match /volunteers/{docId} { allow read, write: if isAuthenticated(); }
+    match /weather/{docId} { allow read, write: if isAuthenticated(); }
+    match /transport/{docId} { allow read, write: if isAuthenticated(); }
+    match /energy/{docId} { allow read, write: if isAuthenticated(); }
+    match /waste/{docId} { allow read, write: if isAuthenticated(); }
+    
+  }
+}
