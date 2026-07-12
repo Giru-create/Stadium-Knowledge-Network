@@ -10,8 +10,9 @@ import { Modal } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Plus } from 'lucide-react';
 
-const StadiumCard = lazy(() => import('@/components/stadiums/StadiumCard'));
-const StadiumForm = lazy(() => import('@/components/stadiums/StadiumForm'));
+// Use explicit default export for lazy components
+const StadiumCard = lazy(() => import('@/components/stadiums/StadiumCard').then(mod => ({ default: mod.StadiumCard })));
+const StadiumForm = lazy(() => import('@/components/stadiums/StadiumForm').then(mod => ({ default: mod.StadiumForm })));
 import { LoadingSkeleton } from '@/components/ui/LoadingSkeleton';
 import { Stadium } from '@/types';
 
