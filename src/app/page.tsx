@@ -62,7 +62,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/40 via-slate-950 to-slate-950 text-slate-100 flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/40 via-slate-950 to-slate-950 text-slate-100 flex flex-col justify-between overflow-hidden">
       {/* Navbar Header */}
       <header className="w-full max-w-7xl mx-auto px-6 h-20 flex items-center justify-between border-b border-slate-900/50">
         <div className="flex items-center gap-3">
@@ -216,7 +216,7 @@ export default function LandingPage() {
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value as UserRole)}
-                      className="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-xs text-slate-200 outline-none focus:border-indigo-500/50 focus:bg-slate-950 transition-all duration-200 cursor-pointer"
+                      className="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-xs text-slate-200 outline-none focus:border-indigo-500/50 focus:bg-slate-950 transition-all duration-200"
                     >
                       <option value="Admin">System Administrator</option>
                       <option value="Stadium Manager">Stadium Manager</option>
