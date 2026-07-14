@@ -29,6 +29,7 @@ export interface Stadium {
   status: 'Online' | 'Maintenance' | 'Offline';
 }
 
+
 export interface Match {
   id: string;
   stadiumId: string;
@@ -68,12 +69,11 @@ export interface IncidentEvent {
   matchId: string;
   stadiumId: string;
   stadiumName: string;
-  type: IncidentType;
-  severity: SeverityLevel;
+  type: string;
+  severity: 'Low' | 'Medium' | 'High' | 'Critical';
   description: string;
-  status: 'Active' | 'Resolved';
   timestamp: string;
-  resolvedAt?: string;
+  status: 'Active' | 'Resolved';
 }
 
 export interface Playbook {

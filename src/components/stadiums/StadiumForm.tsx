@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Stadium, StadiumZone } from '../../types';
+import { Stadium } from '../../types';
 import { Button } from '../ui/Button';
 // import { LoadingSkeleton } from '../ui/LoadingSkeleton';
 
