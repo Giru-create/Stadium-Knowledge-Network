@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 import StadiumForm from "../components/stadiums/StadiumForm";
 
@@ -23,6 +23,7 @@ describe("StadiumForm Component", () => {
   });
 
 
+
   it("allows entering stadium name", () => {
 
     render(
@@ -32,7 +33,9 @@ describe("StadiumForm Component", () => {
     );
 
 
-    const input = screen.getByLabelText("Stadium Name");
+    const input = screen.getByLabelText(
+      "Stadium Name"
+    ) as HTMLInputElement;
 
 
     fireEvent.change(input, {
@@ -42,30 +45,63 @@ describe("StadiumForm Component", () => {
     });
 
 
-    expect(
-      (input as HTMLInputElement).value
-    ).toBe("Narendra Modi Stadium");
+    expect(input.value)
+      .toBe("Narendra Modi Stadium");
 
   });
 
 
-  it("calls submit function", async () => {
 
-    const mockSubmit = vi.fn();
+  it("calls submit function successfully", async () => {
+
+    const mockSubmit = vi.fn()
+      .mockResolvedValue(undefined);
 
 
     render(
-      <StadiumForm 
+      <StadiumForm
         onSubmit={mockSubmit}
       />
     );
 
 
+    // Fill required fields
+
     fireEvent.change(
       screen.getByLabelText("Stadium Name"),
       {
-        target:{
-          value:"Test Stadium"
+        target: {
+          value: "Test Stadium"
+        }
+      }
+    );
+
+
+    fireEvent.change(
+      screen.getByLabelText("City"),
+      {
+        target: {
+          value: "Ahmedabad"
+        }
+      }
+    );
+
+
+    fireEvent.change(
+      screen.getByLabelText("Country"),
+      {
+        target: {
+          value: "India"
+        }
+      }
+    );
+
+
+    fireEvent.change(
+      screen.getByLabelText("Capacity"),
+      {
+        target: {
+          value: "50000"
         }
       }
     );
@@ -76,7 +112,12 @@ describe("StadiumForm Component", () => {
     );
 
 
-    expect(mockSubmit).toBeDefined();
+    await waitFor(() => {
+
+      expect(mockSubmit)
+        .toHaveBeenCalledTimes(1);
+
+    });
 
   });
 
