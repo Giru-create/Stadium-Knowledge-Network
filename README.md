@@ -222,7 +222,11 @@ git clone https://github.com/Giru-create/Stadium-Knowledge-Network.git
 Navigate into the project:
 
 ```bash
-cd Stadium-Knowledge-Network
+cd # 🏟️ Stadium Knowledge Network
+
+## 🚀 Live Demo
+
+https://stadium-knowledge-network-e97r.vercel.app
 ```
 
 Install dependencies:
@@ -282,7 +286,7 @@ The application is deployed using:
 
 Production deployment:
 
-(Add your Vercel URL here)
+(https://stadium-knowledge-network-e97r.vercel.app)
 
 ---
 
