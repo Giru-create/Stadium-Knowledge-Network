@@ -1,34 +1,65 @@
-# Stadium Knowledge Network
+# Stadium Knowledge Network (SKN)
 
-This is a Next.js project for the Stadium Knowledge Network platform.
+AI-powered intelligent stadium management and decision support platform.
 
-## Getting Started
+## 🚀 Overview
 
-First, run the development server:
+SKN uses Generative AI to help stadium operators monitor incidents,
+analyze stadium performance, and generate operational recommendations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- AI-powered stadium insights
+- Real-time incident monitoring
+- Crowd management simulation
+- Stadium analytics dashboard
+- AI-generated operational playbooks
+- Stadium knowledge library
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 AI Integration
 
-## Learn More
+Powered by:
+- Google Gemini AI
+- Generative AI recommendations
+- Intelligent incident analysis
 
-To learn more about Next.js, check out the following resources:
+## 🏗️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) – learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) – an interactive Next.js tutorial.
+Frontend:
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
 
-## Deploy on Vercel
+Backend:
+- Firebase
+- Firestore
+- Firebase Authentication
 
-The easiest way to deploy your Next.js app is to use the Vercel Platform.
+Testing:
+- Vitest
+- React Testing Library
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployment:
+- Vercel
+
+## 🧪 Testing
+
+Current status:
+
+Tests:
+67 passed
+
+Test files:
+17 passed
+
+Build:
+Successful
+
+## 📸 Screenshots
+
+(Add dashboard screenshots here)
+
+## 🌐 Deployment
+
+https://stadium-knowledge-network-ajct.vercel.app/
