@@ -88,8 +88,8 @@ export function useRealtimeData({
 
         const liveMatch = loadedMatches.find((m) => m.status === 'Live') || loadedMatches[0];
         if (liveMatch) setActiveMatch(liveMatch);
-      } catch (err) {
-        console.error('Failed to load initial data from DB', err);
+      } catch {
+        console.error('Failed to load initial data');
       } finally {
         setLoading(false);
       }

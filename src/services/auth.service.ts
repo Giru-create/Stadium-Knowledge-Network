@@ -33,12 +33,15 @@ async function signUp(
     return { uid: userCred.user.uid, email, displayName, role, createdAt };
   }
 
+  // Force Operator role in SANDBOX to prevent privilege escalation
+  const safeRole: UserRole = 'Operator';
+
   const mockUsers = mockDb.getAll<UserProfile>('users');
   const newUser: UserProfile = {
     uid: Math.random().toString(),
     email,
     displayName,
-    role,
+    role: safeRole,
     createdAt: new Date().toISOString(),
   };
   mockUsers.push(newUser);
@@ -69,7 +72,7 @@ async function login(email: string, password: string): Promise<UserProfile | nul
     uid: 'demo-user-1',
     email,
     displayName: 'Demo Controller',
-    role: 'Admin',
+    role: 'Operator',
     createdAt: new Date().toISOString(),
   };
   localStorage.setItem('skn_current_user', JSON.stringify(defaultUser));
@@ -88,8 +91,14 @@ async function logout(): Promise<void> {
 /** Returns the currently authenticated user from localStorage (SANDBOX only). */
 function getCurrentUser(): UserProfile | null {
   if (typeof window === 'undefined') return null;
-  const raw = localStorage.getItem('skn_current_user');
-  return raw ? JSON.parse(raw) : null;
+  try {
+    const raw = localStorage.getItem('skn_current_user');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    // Corrupted or tampered localStorage data — treat as logged out
+    localStorage.removeItem('skn_current_user');
+    return null;
+  }
 }
 
 /**

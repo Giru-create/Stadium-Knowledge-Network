@@ -25,8 +25,8 @@ export function useAuth({ setUser }: UseAuthParams): UseAuthReturn {
         return true;
       }
       return false;
-    } catch (e) {
-      console.error('Login failed', e);
+    } catch {
+      console.error('Login failed');
       return false;
     }
   }, [setUser]);
@@ -45,10 +45,10 @@ export function useAuth({ setUser }: UseAuthParams): UseAuthReturn {
           return true;
         }
         return false;
-      } catch (e) {
-        console.error('SignUp failed', e);
-        return false;
-      }
+    } catch {
+      console.error('SignUp failed');
+      return false;
+    }
     },
     [setUser],
   );

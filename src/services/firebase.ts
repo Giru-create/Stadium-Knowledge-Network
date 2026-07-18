@@ -27,8 +27,8 @@ if (isFirebaseConfigured) {
     auth = getAuth(app);
     db = getFirestore(app);
     console.log('Firebase Live Mode initialized successfully.');
-  } catch (error) {
-    console.error('Firebase failed to initialize. Falling back to Sandbox Mode.', error);
+  } catch {
+    console.error('Firebase initialization failed. Falling back to Sandbox Mode.');
   }
 }
 

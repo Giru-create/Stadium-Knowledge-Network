@@ -81,11 +81,17 @@ function subscribeToRecommendations(
       where('matchId', '==', matchId),
       orderBy('createdAt', 'desc'),
     );
-    return onSnapshot(q, (snapshot) => {
-      callback(
-        snapshot.docs.map((d) => ({ id: d.id, ...d.data() }) as AIRecommendation),
-      );
-    });
+    return onSnapshot(
+      q,
+      (snapshot) => {
+        callback(
+          snapshot.docs.map((d) => ({ id: d.id, ...d.data() }) as AIRecommendation),
+        );
+      },
+      () => {
+        console.error('Recommendation subscription error');
+      },
+    );
   }
 
   const checkData = () => {

@@ -33,8 +33,8 @@ export const aiEngineService = {
         const prompt = buildPlaybookPrompt({ matchId, stadiumName, eventType, description, stadiumId });
         const rawText = await callGemini(prompt);
         playbookData = JSON.parse(rawText.trim());
-      } catch (error) {
-        console.error('Gemini live call failed, falling back to heuristics:', error);
+      } catch {
+        console.error('AI playbook generation failed, using fallback');
         playbookData = generateMockPlaybookData(stadiumId, stadiumName, eventType, description);
       }
     } else {
@@ -75,7 +75,12 @@ export const aiEngineService = {
       createdAt: new Date().toISOString(),
     };
 
-    return recommendationService.createRecommendation(recommendation);
+    try {
+      return await recommendationService.createRecommendation(recommendation);
+    } catch {
+      console.error('AI recommendation creation failed');
+      throw new Error('Failed to create recommendation');
+    }
   },
 
   /**
@@ -101,7 +106,7 @@ export const aiEngineService = {
     riskReductionPercentage: number;
     recommendations: string[];
   }> => {
-    console.log(`Analyzing insights for stadium ID: ${stadiumId}`);
+    void stadiumId; // Parameter reserved for future implementation
     return {
       incidentHeatmap: 'Concourse B East, Gate C Entrance, North Parking Lot',
       topTriggerFactor: 'Heavy precipitation + Gate Scanner outages',

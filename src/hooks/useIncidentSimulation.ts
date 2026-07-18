@@ -27,6 +27,11 @@ function resolveSeverity(eventType: IncidentType): SeverityLevel {
   return 'Medium';
 }
 
+/** Sanitizes free-text input to strip potential injection characters. */
+function sanitizeDescription(input: string): string {
+  return input.replace(/[<>"'`]/g, '').trim().slice(0, 500);
+}
+
 /** Logs a category-specific telemetry record for the active match. */
 async function logTelemetryForEvent(match: Match, eventType: IncidentType): Promise<void> {
   const common = { stadiumId: match.stadiumId, matchId: match.id };
@@ -68,56 +73,65 @@ export function useIncidentSimulation({
       if (!activeMatch) return;
 
       const severity = resolveSeverity(eventType);
-      const description =
+      const rawDescription =
         customDescription || `Simulated ${eventType} alert reported in active sector. Sensor logs indicate sudden surge.`;
+      const description = sanitizeDescription(rawDescription);
 
-      const newIncident = await incidentService.createIncident({
-        matchId: activeMatch.id,
-        stadiumId: activeMatch.stadiumId,
-        stadiumName: activeMatch.stadiumName,
-        type: eventType,
-        severity,
-        description,
-        status: 'Active',
-        timestamp: new Date().toISOString(),
-      });
+      try {
+        const newIncident = await incidentService.createIncident({
+          matchId: activeMatch.id,
+          stadiumId: activeMatch.stadiumId,
+          stadiumName: activeMatch.stadiumName,
+          type: eventType,
+          severity,
+          description,
+          status: 'Active',
+          timestamp: new Date().toISOString(),
+        });
 
-      await logTelemetryForEvent(activeMatch, eventType);
+        await logTelemetryForEvent(activeMatch, eventType);
 
-      let matchingPlaybook = playbooks.find((p) => p.eventType === eventType);
+        let matchingPlaybook = playbooks.find((p) => p.eventType === eventType);
 
-      if (!matchingPlaybook) {
-        matchingPlaybook = await aiEngineService.generatePlaybook(
+        if (!matchingPlaybook) {
+          matchingPlaybook = await aiEngineService.generatePlaybook(
+            activeMatch.id,
+            activeMatch.stadiumId,
+            activeMatch.stadiumName,
+            eventType,
+            description,
+          );
+          const refreshed = await import('@/services/playbook.service').then((m) => m.playbookService.getAllPlaybooks());
+          setPlaybooks(refreshed);
+        }
+
+        await aiEngineService.generateRecommendation(
           activeMatch.id,
           activeMatch.stadiumId,
-          activeMatch.stadiumName,
+          newIncident.id,
           eventType,
           description,
+          matchingPlaybook,
         );
-        const refreshed = await import('@/services/playbook.service').then((m) => m.playbookService.getAllPlaybooks());
-        setPlaybooks(refreshed);
+      } catch {
+        console.error('Incident simulation failed');
       }
-
-      await aiEngineService.generateRecommendation(
-        activeMatch.id,
-        activeMatch.stadiumId,
-        newIncident.id,
-        eventType,
-        description,
-        matchingPlaybook,
-      );
     },
     [activeMatch, playbooks, setPlaybooks],
   );
 
   const resolveActiveIncident = useCallback(
     async (incidentId: string) => {
-      await incidentService.resolveIncident(incidentId);
-      const relatedRecs = recommendations.filter((r) => r.incidentId === incidentId);
-      for (const rec of relatedRecs) {
-        for (let i = 0; i < rec.actions.length; i++) {
-          await recommendationService.updateActionStatus(rec.id, i, 'Implemented');
+      try {
+        await incidentService.resolveIncident(incidentId);
+        const relatedRecs = recommendations.filter((r) => r.incidentId === incidentId);
+        for (const rec of relatedRecs) {
+          for (let i = 0; i < rec.actions.length; i++) {
+            await recommendationService.updateActionStatus(rec.id, i, 'Implemented');
+          }
         }
+      } catch {
+        console.error('Failed to resolve incident');
       }
     },
     [recommendations],
@@ -125,7 +139,11 @@ export function useIncidentSimulation({
 
   const updateActionItemStatus = useCallback(
     async (recId: string, actionIndex: number, status: 'Pending' | 'In Progress' | 'Implemented') => {
-      await recommendationService.updateActionStatus(recId, actionIndex, status);
+      try {
+        await recommendationService.updateActionStatus(recId, actionIndex, status);
+      } catch {
+        console.error('Failed to update action status');
+      }
     },
     [],
   );

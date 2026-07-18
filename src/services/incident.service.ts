@@ -63,11 +63,17 @@ function subscribeToIncidents(
       where('matchId', '==', matchId),
       orderBy('timestamp', 'desc'),
     );
-    return onSnapshot(q, (snapshot) => {
-      callback(
-        snapshot.docs.map((d) => ({ id: d.id, ...d.data() }) as IncidentEvent),
-      );
-    });
+    return onSnapshot(
+      q,
+      (snapshot) => {
+        callback(
+          snapshot.docs.map((d) => ({ id: d.id, ...d.data() }) as IncidentEvent),
+        );
+      },
+      () => {
+        console.error('Incident subscription error');
+      },
+    );
   }
 
   const checkData = () => {
