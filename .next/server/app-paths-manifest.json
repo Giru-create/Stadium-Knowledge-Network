@@ -1,1 +1,13 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/analytics/page": "app/analytics/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/library/page": "app/library/page.js",
+  "/map/page": "app/map/page.js",
+  "/page": "app/page.js",
+  "/recommendations/page": "app/recommendations/page.js",
+  "/settings/page": "app/settings/page.js",
+  "/simulator/page": "app/simulator/page.js",
+  "/stadiums/page": "app/stadiums/page.js"
+}
