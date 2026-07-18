@@ -1,10 +1,4 @@
-export interface CrowdFlowDataPoint {
-  time: string;
-  density: number;
-  flowRate: number;
-}
-
-export const crowdFlowData: CrowdFlowDataPoint[] = [
+export const crowdFlowData = [
   { time: '17:00', density: 12, flowRate: 80 },
   { time: '17:30', density: 25, flowRate: 150 },
   { time: '18:00', density: 48, flowRate: 280 },
