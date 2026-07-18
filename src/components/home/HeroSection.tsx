@@ -20,7 +20,7 @@ export function HeroSection() {
     <div className="lg:col-span-7 flex flex-col gap-8">
       {/* Eyebrow badge */}
       <div className="inline-flex items-center gap-2 bg-indigo-500/10 text-indigo-300 border border-indigo-500/25 px-3 py-1 rounded-full text-xs font-semibold w-fit">
-        <Sparkles className="h-3.5 w-3.5" />
+        <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
         <span>Next-Gen Stadium Intelligence</span>
       </div>
 

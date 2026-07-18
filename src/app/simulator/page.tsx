@@ -119,7 +119,7 @@ export default function SimulatorPage() {
                         aria-label={`Simulate ${btn.label} incident`}
                       >
                         <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800">
-                          <Icon className="h-5 w-5" />
+                          <Icon className="h-5 w-5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col gap-1.5">
                           <span className="text-sm font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
@@ -143,7 +143,7 @@ export default function SimulatorPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BrainCircuit className="h-4.5 w-4.5 text-indigo-400 animate-pulse" /> Live AI Advisory Stream
+                  <BrainCircuit className="h-4.5 w-4.5 text-indigo-400 animate-pulse" aria-hidden="true" /> Live AI Advisory Stream
                 </CardTitle>
                 <CardDescription>
                   Recommendations matching triggered alerts.
@@ -185,7 +185,7 @@ export default function SimulatorPage() {
             <Card className="flex flex-col flex-1 h-[450px]">
               <CardHeader className="border-b border-slate-800/80 pb-3 mb-2">
                 <CardTitle className="flex items-center gap-2 text-sm text-slate-300 font-bold uppercase tracking-wider">
-                  <Terminal className="h-4.5 w-4.5 text-indigo-400" /> Simulator Logs
+                  <Terminal className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> Simulator Logs
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-1 overflow-y-auto font-mono text-[11px] flex flex-col gap-3 pr-2 select-text">

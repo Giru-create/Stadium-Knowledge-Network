@@ -1,13 +1,13 @@
 {
   "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
-  "/map/page": "/map",
-  "/library/page": "/library",
   "/dashboard/page": "/dashboard",
-  "/stadiums/page": "/stadiums",
-  "/simulator/page": "/simulator",
-  "/analytics/page": "/analytics",
-  "/recommendations/page": "/recommendations",
   "/page": "/",
-  "/settings/page": "/settings"
+  "/analytics/page": "/analytics",
+  "/map/page": "/map",
+  "/settings/page": "/settings",
+  "/simulator/page": "/simulator",
+  "/library/page": "/library",
+  "/stadiums/page": "/stadiums",
+  "/recommendations/page": "/recommendations"
 }

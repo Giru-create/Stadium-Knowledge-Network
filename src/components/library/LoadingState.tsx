@@ -6,7 +6,7 @@ import { PlaybookCardSkeleton } from '@/components/ui/Skeleton';
 export function LoadingState() {
   return (
     <DashboardLayout>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8" role="status" aria-label="Loading library data">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex flex-col gap-2">
             <div className="h-8 w-64 bg-slate-800/40 rounded-lg animate-pulse" />

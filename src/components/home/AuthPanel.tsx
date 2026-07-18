@@ -59,7 +59,7 @@ export function AuthPanel({
 
           {/* Error banner */}
           {authError && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-medium">
+            <div role="alert" className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-medium">
               ⚠️ {authError}
             </div>
           )}
@@ -68,10 +68,11 @@ export function AuthPanel({
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {!isLogin && (
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                <label htmlFor="auth-display-name" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Display Name
                 </label>
                 <input
+                  id="auth-display-name"
                   type="text"
                   required
                   placeholder="e.g. Chief Ops Officer"
@@ -83,10 +84,11 @@ export function AuthPanel({
             )}
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="auth-email" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 Email Address
               </label>
               <input
+                id="auth-email"
                 type="email"
                 required
                 placeholder="operator@skn.fifa.com"
@@ -97,10 +99,11 @@ export function AuthPanel({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="auth-password" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 Security Password
               </label>
               <input
+                id="auth-password"
                 type="password"
                 required
                 placeholder="••••••••"
@@ -112,10 +115,11 @@ export function AuthPanel({
 
             {!isLogin && (
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                <label htmlFor="auth-role" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Operator Role
                 </label>
                 <select
+                  id="auth-role"
                   value={role}
                   onChange={(e) => setRole(e.target.value as AuthPanelProps['role'])}
                   className={INPUT_CLASS}

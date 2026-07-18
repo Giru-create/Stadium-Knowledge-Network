@@ -21,7 +21,7 @@ export default function LandingPage() {
       <header className="w-full max-w-7xl mx-auto px-6 h-20 flex items-center justify-between border-b border-slate-900/50">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-500 shadow-md shadow-indigo-500/20">
-            <Radio className="h-5 w-5 text-white animate-pulse" />
+            <Radio className="h-5 w-5 text-white animate-pulse" aria-hidden="true" />
           </div>
           <div>
             <h1 className="text-base font-bold tracking-tight text-slate-100">SKN</h1>

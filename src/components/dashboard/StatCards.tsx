@@ -32,28 +32,28 @@ function buildStatCards({
       label: 'Connected Stadiums',
       value: stadiumCount,
       footer: 'All FIFA systems sync active',
-      icon: <Building2 className="h-5 w-5" />,
+      icon: <Building2 className="h-5 w-5" aria-hidden="true" />,
       color: 'indigo',
     },
     {
       label: 'AI Playbooks Library',
       value: playbookCount,
       footer: `${avgConfidence}% Avg Confidence Rating`,
-      icon: <BookOpen className="h-5 w-5" />,
+      icon: <BookOpen className="h-5 w-5" aria-hidden="true" />,
       color: 'purple',
     },
     {
       label: 'Active Operations Alerts',
       value: activeIncidentCount,
       footer: `${resolvedIncidentCount} incidents resolved today`,
-      icon: <AlertTriangle className={`h-5 w-5 ${activeIncidentCount > 0 ? 'animate-pulse' : ''}`} />,
+      icon: <AlertTriangle className={`h-5 w-5 ${activeIncidentCount > 0 ? 'animate-pulse' : ''}`} aria-hidden="true" />,
       color: 'rose',
     },
     {
       label: 'AI Actions Implemented',
       value: implementedActionsCount,
       footer: 'Continuous mitigation online',
-      icon: <CheckCircle2 className="h-5 w-5" />,
+      icon: <CheckCircle2 className="h-5 w-5" aria-hidden="true" />,
       color: 'emerald',
     },
   ];
@@ -86,7 +86,7 @@ export function StatCards(props: StatCardsProps) {
             </div>
             <div className={`mt-4 flex items-center text-[10px] ${c.footerClass} font-bold`}>
               <span>{card.footer}</span>
-              <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+              <ArrowUpRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
             </div>
           </Card>
         );

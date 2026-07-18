@@ -69,7 +69,7 @@ const _Button = (
       {...props}
     >
       {loading && (
-        <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-transparent" />
+        <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-transparent" aria-hidden="true" />
       )}
       {children}
     </button>

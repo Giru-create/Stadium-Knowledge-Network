@@ -17,7 +17,7 @@ export function AdvisoryPanel({ recommendations, onUpdateAction }: AdvisoryPanel
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
-              <Zap className="h-4.5 w-4.5 text-indigo-400 animate-pulse" /> Live AI Operations Advisory
+              <Zap className="h-4.5 w-4.5 text-indigo-400 animate-pulse" aria-hidden="true" /> Live AI Operations Advisory
             </CardTitle>
             <CardDescription>
               Proactive operational adjustments generated automatically based on sensor inputs.

@@ -16,7 +16,7 @@ export function ActiveIncidentsLog({ activeIncidents, activeMatch, onResolve }: 
       <div>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="h-4.5 w-4.5 text-rose-500" /> Active Operations Logs
+            <AlertTriangle className="h-4.5 w-4.5 text-rose-500" aria-hidden="true" /> Active Operations Logs
           </CardTitle>
           <CardDescription>Real-time incident log for the match.</CardDescription>
         </CardHeader>

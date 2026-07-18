@@ -20,8 +20,9 @@ export function DashboardHeader({ matches, activeMatchId, onMatchChange }: Dashb
       </div>
 
       <div className="flex items-center gap-2">
-        <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Active Match:</span>
+        <label htmlFor="match-select" className="text-xs text-slate-500 font-bold uppercase tracking-wider">Active Match:</label>
         <select
+          id="match-select"
           value={activeMatchId || ''}
           onChange={(e) => onMatchChange(e.target.value)}
           className="rounded-xl border border-slate-800 bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-200 outline-none focus:border-indigo-500/50 cursor-pointer"

@@ -39,10 +39,11 @@ export function ComparePanel({
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="compare-category" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 Event Category
               </label>
               <select
+                id="compare-category"
                 value={compareCategory}
                 onChange={(e) => onCategoryChange(e.target.value as IncidentType)}
                 className="w-full rounded-xl border border-slate-800 bg-slate-900 px-4 py-2.5 text-xs text-slate-200 outline-none focus:border-indigo-500/50 cursor-pointer"
@@ -56,10 +57,11 @@ export function ComparePanel({
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+              <label htmlFor="compare-scenario" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                 Custom Incident Description
               </label>
               <textarea
+                id="compare-scenario"
                 rows={5}
                 value={customScenario}
                 onChange={(e) => onScenarioChange(e.target.value)}
@@ -86,7 +88,7 @@ export function ComparePanel({
           <CardContent className="flex flex-col gap-4">
             {comparisonResults.length === 0 ? (
               <div className="text-center py-16 border border-dashed border-slate-800 rounded-2xl bg-slate-900/10">
-                <HelpCircle className="h-10 w-10 text-slate-600 mx-auto mb-3 animate-pulse" />
+                <HelpCircle className="h-10 w-10 text-slate-600 mx-auto mb-3 animate-pulse" aria-hidden="true" />
                 <p className="text-xs text-slate-500 max-w-xs mx-auto leading-relaxed">
                   Input a scenario details on the left and query library to search comparable playbooks.
                 </p>

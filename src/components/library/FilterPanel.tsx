@@ -26,8 +26,10 @@ export function FilterPanel({
   return (
     <div className="flex flex-wrap gap-3 w-full md:w-auto items-center justify-end">
       <div className="flex items-center gap-2">
-        <SlidersHorizontal className="h-4 w-4 text-slate-500" />
+        <SlidersHorizontal className="h-4 w-4 text-slate-500" aria-hidden="true" />
+        <label htmlFor="library-category" className="sr-only">Category filter</label>
         <select
+          id="library-category"
           value={selectedType}
           onChange={(e) => onTypeChange(e.target.value)}
           className="rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 outline-none cursor-pointer"
@@ -40,7 +42,9 @@ export function FilterPanel({
         </select>
       </div>
 
+      <label htmlFor="library-stadium" className="sr-only">Stadium filter</label>
       <select
+        id="library-stadium"
         value={selectedStadium}
         onChange={(e) => onStadiumChange(e.target.value)}
         className="rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 outline-none cursor-pointer"
@@ -53,7 +57,9 @@ export function FilterPanel({
         ))}
       </select>
 
+      <label htmlFor="library-sort" className="sr-only">Sort order</label>
       <select
+        id="library-sort"
         value={sortBy}
         onChange={(e) => onSortChange(e.target.value as SortKey)}
         className="rounded-xl border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 outline-none cursor-pointer"

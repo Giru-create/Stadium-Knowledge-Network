@@ -64,7 +64,7 @@ export default function MapPage() {
               <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Live Broadcast</span>
                 <span className="text-sm font-bold text-slate-200 flex items-center gap-1.5">
-                  <Radio className="h-4 w-4 text-rose-500 animate-pulse" /> {activeStadium.name}
+                    <Radio className="h-4 w-4 text-rose-500 animate-pulse" aria-hidden="true" /> {activeStadium.name}
                 </span>
               </div>
 
@@ -76,7 +76,7 @@ export default function MapPage() {
               </div>
 
               {/* SVG Map */}
-              <svg viewBox="0 0 500 500" className="w-full max-w-[380px] filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)]">
+              <svg viewBox="0 0 500 500" className="w-full max-w-[380px] filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)]" role="img" aria-label={`Stadium map for ${activeStadium.name}`}>
                 {/* Outer Ring */}
                 <circle cx="250" cy="250" r="230" fill="none" stroke="#334155" strokeWidth="2" strokeDasharray="4 8" opacity="0.3" />
                 
@@ -88,6 +88,10 @@ export default function MapPage() {
                   d="M 120 135 A 200 170 0 0 1 380 135 L 340 165 A 150 120 0 0 0 160 165 Z" 
                   className={`cursor-pointer transition-all duration-300 ${getZoneColor(activeStadium.zones[0].status)}`}
                   onClick={() => setSelectedZoneId('z1')}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${activeStadium.zones[0].name}: ${activeStadium.zones[0].status}, ${activeStadium.zones[0].occupancy}% occupancy`}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedZoneId('z1'); } }}
                 />
                 
                 {/* Zone 2: East Concourse (Right Arc) */}
@@ -95,6 +99,10 @@ export default function MapPage() {
                   d="M 380 135 A 200 170 0 0 1 380 365 L 340 335 A 150 120 0 0 0 340 165 Z" 
                   className={`cursor-pointer transition-all duration-300 ${getZoneColor(activeStadium.zones[1].status)}`}
                   onClick={() => setSelectedZoneId('z2')}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${activeStadium.zones[1].name}: ${activeStadium.zones[1].status}, ${activeStadium.zones[1].occupancy}% occupancy`}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedZoneId('z2'); } }}
                 />
 
                 {/* Zone 3: North Entrance Gate (Bottom Arc) */}
@@ -102,6 +110,10 @@ export default function MapPage() {
                   d="M 380 365 A 200 170 0 0 1 120 365 L 160 335 A 150 120 0 0 0 340 335 Z" 
                   className={`cursor-pointer transition-all duration-300 ${getZoneColor(activeStadium.zones[2].status)}`}
                   onClick={() => setSelectedZoneId('z3')}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${activeStadium.zones[2].name}: ${activeStadium.zones[2].status}, ${activeStadium.zones[2].occupancy}% occupancy`}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedZoneId('z3'); } }}
                 />
 
                 {/* Zone 4: South Concourse / Concession Hall (Left Arc) */}
@@ -109,6 +121,10 @@ export default function MapPage() {
                   d="M 120 365 A 200 170 0 0 1 120 135 L 160 165 A 150 120 0 0 0 160 335 Z" 
                   className={`cursor-pointer transition-all duration-300 ${getZoneColor(activeStadium.zones[3].status)}`}
                   onClick={() => setSelectedZoneId('z4')}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${activeStadium.zones[3].name}: ${activeStadium.zones[3].status}, ${activeStadium.zones[3].occupancy}% occupancy`}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedZoneId('z4'); } }}
                 />
 
                 {/* The Pitch (Center Green) */}
@@ -146,13 +162,13 @@ export default function MapPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 flex flex-col gap-1">
                     <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                      <Users className="h-3 w-3" /> Density Level
+                      <Users className="h-3 w-3" aria-hidden="true" /> Density Level
                     </span>
                     <span className="text-base font-black text-slate-100">{selectedZone.occupancy}%</span>
                   </div>
                   <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-3 flex flex-col gap-1">
                     <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-                      <UserCheck className="h-3 w-3" /> Flow Index
+                      <UserCheck className="h-3 w-3" aria-hidden="true" /> Flow Index
                     </span>
                     <span className="text-base font-black text-emerald-400">
                       {selectedZone.status === 'Normal' ? 'OPTIMAL' : 'SLUGGISH'}
@@ -165,7 +181,7 @@ export default function MapPage() {
                   <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Active Sector Warnings</span>
                   {selectedZone.id === 'z4' && activeIncidentTypes.includes('Heavy Rain') ? (
                     <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 flex gap-2.5 items-start text-xs text-rose-400">
-                      <AlertTriangle className="h-4.5 w-4.5 shrink-0" />
+                      <AlertTriangle className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                       <div>
                         <span className="font-bold">Weather Relocation Congestion</span>
                         <p className="text-[10px] text-slate-400 leading-relaxed mt-0.5">
@@ -175,7 +191,7 @@ export default function MapPage() {
                     </div>
                   ) : selectedZone.id === 'z3' && activeIncidentTypes.includes('Gate Closed') ? (
                     <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 flex gap-2.5 items-start text-xs text-rose-400">
-                      <AlertTriangle className="h-4.5 w-4.5 shrink-0" />
+                      <AlertTriangle className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                       <div>
                         <span className="font-bold">Hardware Validation Failure</span>
                         <p className="text-[10px] text-slate-400 leading-relaxed mt-0.5">

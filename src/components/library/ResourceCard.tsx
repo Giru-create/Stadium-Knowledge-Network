@@ -19,7 +19,7 @@ export function ResourceCard({ playbook, onInspect }: ResourceCardProps) {
             {playbook.eventType}
           </Badge>
           <Badge variant="success" className="gap-1 text-[9px]">
-            <Award className="h-3 w-3" /> {playbook.confidenceScore}% Confidence
+            <Award className="h-3 w-3" aria-hidden="true" /> {playbook.confidenceScore}% Confidence
           </Badge>
         </div>
 
@@ -37,7 +37,7 @@ export function ResourceCard({ playbook, onInspect }: ResourceCardProps) {
 
       <CardFooter className="px-0 pb-0 mt-4 border-t border-slate-800/40 pt-3 flex items-center justify-between">
         <span className="text-[10px] text-slate-500 flex items-center gap-1">
-          <Clock className="h-3 w-3" /> {new Date(playbook.createdAt).toLocaleDateString()}
+          <Clock className="h-3 w-3" aria-hidden="true" /> {new Date(playbook.createdAt).toLocaleDateString()}
         </span>
         <button
           onClick={() => onInspect(playbook)}

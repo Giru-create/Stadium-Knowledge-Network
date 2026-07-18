@@ -66,7 +66,7 @@ export function FeaturesSection() {
             <div
               className={`p-2 rounded-lg border ${style.box} ${style.icon}`}
             >
-              <Icon className="h-4.5 w-4.5" />
+              <Icon className="h-4.5 w-4.5" aria-hidden="true" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-slate-200">

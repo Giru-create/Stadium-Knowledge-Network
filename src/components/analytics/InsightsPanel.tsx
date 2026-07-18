@@ -34,7 +34,7 @@ export function InsightsPanel() {
     <Card>
       <CardHeader>
         <CardTitle className="text-sm font-bold flex items-center gap-2">
-          <ShieldAlert className="h-4 w-4 text-indigo-400" /> Key Insights
+          <ShieldAlert className="h-4 w-4 text-indigo-400" aria-hidden="true" /> Key Insights
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">

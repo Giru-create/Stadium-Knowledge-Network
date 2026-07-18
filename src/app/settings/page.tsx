@@ -85,7 +85,7 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Key className="h-4.5 w-4.5 text-indigo-400" /> API Credentials
+                  <Key className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> API Credentials
                 </CardTitle>
                 <CardDescription>
                   Configure your Gemini API key to enable live AI Playbook generation.
@@ -94,8 +94,9 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
               <CardContent>
                 <form onSubmit={handleSaveKeys} className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Gemini API Key</label>
+                    <label htmlFor="gemini-api-key" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Gemini API Key</label>
                     <input
+                      id="gemini-api-key"
                       type="password"
                       placeholder="Paste your Gemini AI API key (AI_KEY_...)"
                       value={geminiKey}
@@ -109,8 +110,8 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
 
                   <div className="flex items-center justify-between mt-2">
                     {saveSuccess && (
-                      <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
-                        <CheckCircle className="h-4 w-4" /> Keys updated.
+                      <span role="status" className="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                        <CheckCircle className="h-4 w-4" aria-hidden="true" /> Keys updated.
                       </span>
                     )}
                     <Button type="submit" variant="primary" className="ml-auto">
@@ -127,14 +128,14 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="flex items-center gap-2">
-                      <Terminal className="h-4.5 w-4.5 text-indigo-400" /> Environment Variables Setup
+                      <Terminal className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> Environment Variables Setup
                     </CardTitle>
                     <CardDescription>
                       Copy these properties into a <code>.env.local</code> file in your project directory to trigger Live Firebase modes.
                     </CardDescription>
                   </div>
-                  <Button variant="ghost" size="sm" onClick={copyToClipboard}>
-                    {copiedEnv ? 'Copied!' : <Copy className="h-4 w-4" />}
+                  <Button variant="ghost" size="sm" onClick={copyToClipboard} aria-label={copiedEnv ? 'Copied' : 'Copy environment variables template'}>
+                    {copiedEnv ? 'Copied!' : <Copy className="h-4 w-4" aria-hidden="true" />}
                   </Button>
                 </div>
               </CardHeader>
@@ -152,7 +153,7 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <User className="h-4.5 w-4.5 text-indigo-400" /> Account Profile
+                  <User className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> Account Profile
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-4">
@@ -179,7 +180,7 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Database className="h-4.5 w-4.5 text-rose-500" /> Sandbox Cache
+                  <Database className="h-4.5 w-4.5 text-rose-500" aria-hidden="true" /> Sandbox Cache
                 </CardTitle>
                 <CardDescription>
                   Reset simulator incident history and flush mock database back to defaults.
@@ -196,7 +197,7 @@ NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key`;
                   loading={clearing}
                   className="w-full flex items-center justify-center gap-2 py-2.5"
                 >
-                  <RefreshCw className={`h-4 w-4 ${clearing ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${clearing ? 'animate-spin' : ''}`} aria-hidden="true" />
                   Clear Simulator Databases
                 </Button>
               </CardContent>

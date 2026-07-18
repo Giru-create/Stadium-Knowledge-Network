@@ -5,7 +5,7 @@ import { StatCardSkeleton, RecommendationSkeleton } from '@/components/ui/Skelet
 export function DashboardLoadingSkeleton() {
   return (
     <DashboardLayout>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8" role="status" aria-label="Loading dashboard data">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex flex-col gap-2">
             <div className="h-8 w-64 bg-slate-800/40 rounded-lg animate-pulse" />

@@ -73,7 +73,7 @@ export function SummaryCards() {
               <span
                 className={`text-[10px] font-bold ${style.text} uppercase tracking-wider flex items-center gap-1.5`}
               >
-                <Icon className="h-3.5 w-3.5" /> {card.label}
+                <Icon className="h-3.5 w-3.5" aria-hidden="true" /> {card.label}
               </span>
               <h3 className="text-3xl font-black text-slate-100">
                 {card.value}

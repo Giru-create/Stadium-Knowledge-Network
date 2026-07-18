@@ -23,10 +23,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   if (loading) {
     return (
-      <div className="flex h-screen w-screen flex-col items-center justify-center bg-slate-950 gap-4">
+      <div className="flex h-screen w-screen flex-col items-center justify-center bg-slate-950 gap-4" role="status" aria-label="Loading">
         <div className="relative flex items-center justify-center">
           <div className="absolute h-16 w-16 rounded-full border-4 border-indigo-500/10 border-t-indigo-500 animate-spin" />
-          <Loader2 className="h-8 w-8 text-indigo-400 animate-pulse" />
+          <Loader2 className="h-8 w-8 text-indigo-400 animate-pulse" aria-hidden="true" />
         </div>
         <p className="text-sm font-semibold tracking-wide text-indigo-400 uppercase animate-pulse">
           Loading Stadium Knowledge Network
@@ -48,7 +48,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <Header />
         
         {/* Sub-Page Content Container */}
-        <main className="flex-1 p-6 md:p-8 max-w-7xl w-full mx-auto animate-in fade-in duration-300">
+        <main id="main-content" className="flex-1 p-6 md:p-8 max-w-7xl w-full mx-auto animate-in fade-in duration-300">
           {children}
         </main>
       </div>

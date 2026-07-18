@@ -14,7 +14,7 @@ export function StadiumDetails({ activeMatch }: StadiumDetailsProps) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <MapPin className="h-4.5 w-4.5 text-indigo-400" /> Stadium Configuration
+          <MapPin className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> Stadium Configuration
         </CardTitle>
         <CardDescription>Telemetry nodes & regional parameters.</CardDescription>
       </CardHeader>

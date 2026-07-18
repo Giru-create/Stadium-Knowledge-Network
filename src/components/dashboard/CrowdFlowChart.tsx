@@ -19,7 +19,7 @@ export function CrowdFlowChart() {
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-4.5 w-4.5 text-indigo-400" /> Live Match Telemetry
+              <TrendingUp className="h-4.5 w-4.5 text-indigo-400" aria-hidden="true" /> Live Match Telemetry
             </CardTitle>
             <CardDescription>
               Crowd density fluctuations and gate ingress flow rates.
