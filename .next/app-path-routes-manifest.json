@@ -2,12 +2,12 @@
   "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
   "/dashboard/page": "/dashboard",
-  "/analytics/page": "/analytics",
   "/page": "/",
-  "/recommendations/page": "/recommendations",
-  "/library/page": "/library",
   "/map/page": "/map",
-  "/stadiums/page": "/stadiums",
+  "/recommendations/page": "/recommendations",
+  "/settings/page": "/settings",
   "/simulator/page": "/simulator",
-  "/settings/page": "/settings"
+  "/library/page": "/library",
+  "/stadiums/page": "/stadiums",
+  "/analytics/page": "/analytics"
 }
