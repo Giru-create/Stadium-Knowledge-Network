@@ -12,7 +12,7 @@ import {
   buildCategoryDistribution,
   buildLearningData,
 } from '@/services/analytics.service';
-import { Playbook, AIRecommendation } from '@/types';
+import { Playbook, AIRecommendation, IncidentType } from '@/types';
 
 describe('analytics utils', () => {
   describe('PIE_COLORS', () => {
