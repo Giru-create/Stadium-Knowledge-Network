@@ -1,5 +1,12 @@
 import { useEffect, useCallback } from 'react';
-import { Match, Stadium, IncidentEvent } from '@/types';
+import type {
+  Match,
+  Stadium,
+  IncidentEvent,
+  UserProfile,
+  Playbook,
+  AIRecommendation,
+} from '@/types';
 import {
   authService,
   stadiumService,
@@ -11,13 +18,13 @@ import {
 } from '@/lib/firebase';
 
 interface UseRealtimeDataParams {
-  setUser: React.Dispatch<React.SetStateAction<import('@/types').UserProfile | null>>;
+  setUser: React.Dispatch<React.SetStateAction<UserProfile | null>>;
   setStadiums: React.Dispatch<React.SetStateAction<Stadium[]>>;
   setMatches: React.Dispatch<React.SetStateAction<Match[]>>;
   setActiveMatch: React.Dispatch<React.SetStateAction<Match | null>>;
-  setIncidents: React.Dispatch<React.SetStateAction<import('@/types').IncidentEvent[]>>;
-  setPlaybooks: React.Dispatch<React.SetStateAction<import('@/types').Playbook[]>>;
-  setRecommendations: React.Dispatch<React.SetStateAction<import('@/types').AIRecommendation[]>>;
+  setIncidents: React.Dispatch<React.SetStateAction<IncidentEvent[]>>;
+  setPlaybooks: React.Dispatch<React.SetStateAction<Playbook[]>>;
+  setRecommendations: React.Dispatch<React.SetStateAction<AIRecommendation[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setPlatformMode: React.Dispatch<React.SetStateAction<'LIVE' | 'SANDBOX'>>;
   activeMatch: Match | null;

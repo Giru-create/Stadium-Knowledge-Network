@@ -60,23 +60,31 @@ const _Button = (
       break;
   }
 
-  return (
-    <button
-      ref={ref}
-      className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
-      disabled={loading || disabled}
-      aria-disabled={loading || disabled}
-      {...props}
-    >
-      {loading && (
-        <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-transparent" aria-hidden="true" />
-      )}
-      {children}
-    </button>
+return (
+  <button
+    ref={ref}
+    className={`${baseStyle} ${variantStyle} ${sizeStyle} ${className}`}
+    disabled={loading || disabled}
+    aria-disabled={loading || disabled}
+    aria-busy={loading}
+    {...props}
+  >
+    {loading && (
+      <>
+        <span
+          className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-transparent"
+          aria-hidden="true"
+        />
+        <span className="sr-only">Loading...</span>
+      </>
+    )}
+
+        {children}
+  </button>
   );
 };
 
-/**
- * Exported memoized component for performance.
- */
+ /**
+  * Exported memoized component for performance.
+  */
 export const Button = React.memo(forwardRef(_Button));

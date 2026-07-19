@@ -1,6 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import type {
   UserProfile,
   UserRole,
@@ -94,13 +100,48 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // ── Memoised context value ──────────────────────────────────────────────
 
-  const value: AppContextType = {
-    user, stadiums, matches, activeMatch, incidents,
-    playbooks, recommendations, loading, platformMode,
-    login, logout, signUp, changeActiveMatch,
-    triggerIncidentSimulation, resolveActiveIncident,
-    updateActionItemStatus, reloadPlaybooks, addStadium,
-  };
+ const value = useMemo<AppContextType>(
+  () => ({
+    user,
+    stadiums,
+    matches,
+    activeMatch,
+    incidents,
+    playbooks,
+    recommendations,
+    loading,
+    platformMode,
+    login,
+    logout,
+    signUp,
+    changeActiveMatch,
+    triggerIncidentSimulation,
+    resolveActiveIncident,
+    updateActionItemStatus,
+    reloadPlaybooks,
+    addStadium,
+  }),
+  [
+    user,
+    stadiums,
+    matches,
+    activeMatch,
+    incidents,
+    playbooks,
+    recommendations,
+    loading,
+    platformMode,
+    login,
+    logout,
+    signUp,
+    changeActiveMatch,
+    triggerIncidentSimulation,
+    resolveActiveIncident,
+    updateActionItemStatus,
+    reloadPlaybooks,
+    addStadium,
+  ]
+);
 
   return (
     <AppContext.Provider value={value}>
